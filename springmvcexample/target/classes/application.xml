@@ -3,12 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+
 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-   http://www.springframework.org/schema/context
-   http://www.springframework.org/schema/context/spring-context-3.0.xsd"
-	xmlns:aop="http://www.springframework.org/schema/aop">
+    http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd
+   http://www.springframework.org/schema/util
+   http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<context:annotation-config />
 
@@ -20,6 +24,29 @@
 		p:firstName="3434" p:lastName="3434" init-method="init" destroy-method="destroy" 
 		/> -->
 
+	<util:list list-class="java.util.ArrayList" id="skills">
+		<value>Java</value>
+		<value>Nodejs</value>
+		<value>Flutter</value>
+		<value>Quarkus</value>
+		<value>Spring boot</value>
+
+	</util:list>
+
+	<util:map map-class="java.util.HashMap" id="exp">
+		<entry key="A Company" value="3 years" />
+		<entry key="B Company" value="1 years" />
+		<entry key="C Company" value="1 years" />
+		<entry key="D Company" value="2 years" />
+	</util:map>
+	
+	<util:properties id="db">
+	<prop key="name">db1</prop>
+	<prop key="url">mysql:db:jdbc://localhost/mydb:3306</prop>
+	<prop key="user">root</prop>
+	<prop key="driver">driver -Az</prop>
+	<prop key="password">helloadmin</prop>
+	</util:properties>
 
 	<bean class="com.howtodoinjava.demo.dao.Address" name="address2"
 		p:city="Karachi" p:state="Sindh" p:country="Pakistan" />
@@ -28,7 +55,8 @@
 		p:city="Lahore" p:state="Punjab" p:country="Pakistan" />
 
 	<bean class="com.howtodoinjava.demo.dao.Employee" name="emp"
-		p:name="babar" p:salary="3434343" />
+		p:name="babar" p:salary="3434343" p:skills-ref="skills"
+		p:exp-ref="exp" p:db-ref = "db" />
 
 
 </beans>
